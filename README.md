@@ -6,6 +6,7 @@ This is the supplementary code for the paper [Prokaryotic-like ribosome exit tun
 
 - Python 3.8+
 - [LAMMPS version 2025](https://www.lammps.org/)
+- [MOLE2](https://webchem.ncbr.muni.cz/Platform/App/Mole)
 
 ## Usage
 
