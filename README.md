@@ -1,5 +1,12 @@
-# tunnel_extraction_analysis
+# Ribosome Exit Tunnel Extraction Workflow
 
-This project aims to extract the ribosome exit tunnel from available 3D ribosome stuctures from the public database, compare the tunnel structure heterogeneties acrocss speciecs, understand the functional impacts of the tunnel geometric modifications on translation dynamics and PTC accessibility.
+This is the supplementary code for the paper [Prokaryotic-like ribosome exit tunnels in eukaryotic protists: structural origins and functional consequences](#url_to_be_added).
 
-This workflow involves tunnel-extraction and constriction and radius analysis using Python-based scripts, and the codes for coarse-grained simulation using LAMMMPS. 
+## Dependencies
+
+- Python 3.8+
+- [LAMMPS version 2025](https://www.lammps.org/)
+
+## Usage
+
+The workflow includes automated tunnel extraction and downstream geometric analysis using Python scripts, and coarse-grained molecular dynamics (MD) simulations using LAMMPS
