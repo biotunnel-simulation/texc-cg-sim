@@ -8,7 +8,7 @@ This is the supplementary code for the paper [Prokaryotic-like ribosome exit tun
 - [LAMMPS version 2025](https://www.lammps.org/)
 - [MOLE2](https://webchem.ncbr.muni.cz/Platform/App/Mole)
 - [PyMOL 2.6](https://www.pymol.org/)
-- 
+  
 ## Usage
 
 The workflow includes automated tunnel extraction and downstream geometric analysis using Python scripts, and coarse-grained molecular dynamics (MD) simulations using LAMMPS
