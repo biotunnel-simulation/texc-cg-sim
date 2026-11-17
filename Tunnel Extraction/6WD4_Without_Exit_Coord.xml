@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Tunnels>
   <Input>/Users/6WD4_edited.pdb</Input>
-  <WorkingDirectory>/Users/6WD4_no_exit/</WorkingDirectory>
+  <WorkingDirectory>/Users/6WD4/</WorkingDirectory>
 
   # If ligands or chains are found within the original ribosome structure, they may block the tunnel, thereby affecting the tunnel searching
   # This section need to be added to remove those blockages
