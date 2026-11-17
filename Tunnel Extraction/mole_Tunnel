@@ -1,0 +1,7 @@
+#!/usr/local/bin/python3.9
+
+import os
+
+os.system('mono TunnelsServer/mole2.exe /Users/6WD4_With_Exit_Coord.xml')
+
+os.system('mono TunnelsServer/mole2.exe /Users/6WD4_Without_Exit_Coord.xml')
