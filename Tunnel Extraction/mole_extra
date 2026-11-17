@@ -1,0 +1,7 @@
+#!/usr/local/bin/python3.9
+
+import os
+
+#os.system('mono TunnelsServer/mole2.exe ../../../../Volumes/LaCie/project2/org/3J9M_origin.xml')
+
+os.system('mono TunnelsServer/mole2.exe ../Desktop/arch/4V9F_origin.xml')
