@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Tunnels>
   <Input>/Users/6WD4_edited.pdb</Input>
-  <WorkingDirectory>/Users/6WD4/</WorkingDirectory>
+  <WorkingDirectory>/Users/6WD4_no_exit/</WorkingDirectory>
   <Params>
      <Cavity ProbeRadius="10" InteriorThreshold="1.25" />
     <Tunnel SurfaceCoverRadius="10" OriginRadius="5" BottleneckTolerance="3" WeightFunction="LengthAndRadius" UseCustomExitsOnly="0"/>
