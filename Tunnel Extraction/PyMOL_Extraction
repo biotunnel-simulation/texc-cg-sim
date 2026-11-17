@@ -2,11 +2,9 @@
 
 import os
 
+pdb_file = "/Users/6WD4/pymol/complex.py" 
 
-
-pdb_file = "/Volumes/LaCie/project2/extra/3J9M/pymol/complex.py" 
-
-mole_file = "/Volumes/LaCie/project2/extra/khanh_aftermole/aftermole_3J9M.py" 
+mole_file = "/Users/aftermole_3J9M.py" 
 	
 command = f"pymol -c {mole_file}"
 
