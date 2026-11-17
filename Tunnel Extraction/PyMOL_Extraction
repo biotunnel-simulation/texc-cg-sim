@@ -2,21 +2,14 @@
 
 import os
 
+# A loop structure is needed for multiple species
+
 pdb_file = "/Users/6WD4/pymol/complex.py" 
 
-mole_file = "/Users/aftermole_3J9M.py" 
+mole_file = "/Users/Tunnel_6WD4_Output.py" 
 	
 command = f"pymol -c {mole_file}"
 
 os.system(command)
-
-	
-file_path = "/Users/shiqiyu/Desktop/3J9M.cif" 
-
-
-command2 = f"rm {file_path}"
-	
-os.system(command2)
-
  
 exit
