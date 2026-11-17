@@ -3,6 +3,8 @@
 import os
 
 pro_list = []
+
+# Extract the PDB ID of the ribosomes
 with open('/Users/Protein_Code.txt', 'r') as f:
     for lines in f.readlines()[1:]:
         line = lines.strip('\n')  
