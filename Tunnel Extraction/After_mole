@@ -2,14 +2,24 @@
 
 import os
 
-# A loop structure is needed for multiple species
+pro_list = []
 
-pdb_file = "/Users/6WD4/pymol/complex.py" 
+# Extract the PDB ID of the ribosomes
+with open('/Users/Protein_Code.txt', 'r') as f:
+    for lines in f.readlines()[1:]:
+        line = lines.strip('\n')  
+        data_set = line.split()
+        pro_list.append(data_set[0])
 
-mole_file = "/Users/Tunnel_6WD4_Output.py" 
-	
-command = f"pymol -c {mole_file}"
+# Compute the tunnel geometric characteristics extracted with and without exit coordinates
+for i in range (len(pro_list)):
+	mole_file = "/Users/Tunnel_%s_Output.py" %str(pro_list[i])
+	command = f"pymol -c {mole_file}"
+	os.system(command)
 
-os.system(command)
+	# Invoking PyMOL may generate a duplicate .cif file, so use the following code to delete that file
+	file_path = "/Users/%s.cif" %str(pro_list[i])
+	command2 = f"rm {file_path}"
+	os.system(command2)
  
 exit
