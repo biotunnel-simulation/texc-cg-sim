@@ -1,5 +1,6 @@
 variable dir index ${iname}  # ${dir} is the PDB ID (e.g. 6WD4)
-  
+variable mer equal ${ilen}
+
 variable T equal 293
 
 variable CON0 equal 100000 
@@ -126,6 +127,7 @@ variable chain3 equal ${chain2}-1
 
 variable chain4 equal ${chain2}-2
 
+variable beadnum equal ${mer}-1
 
 group c_ter id ${chain2} 
 
@@ -160,13 +162,10 @@ run         10000
 
 
 # In this example, the polypeptide chain is extended to 60 beads, corresponding to a 20-amino-acid sequence.
-if "${a} == 59" then "variable check equal 1"      # This ${a} parameter specifies the number of beads to be added to the chain.
-
-
-variable nnnname equal ${a}+1
+if "${a} == ${beadnum}" then "variable check equal 1"    
 
 if " ${check} == 1 " then &
-  "dump  1   nc custom 500 test/${dir}/${nnnname}_chain_${n}.lammpstrj id element x y z" &
+  "dump  1   nc custom 500 test/${dir}/${mer}_chain_${n}.lammpstrj id element x y z" &
   "run 10000" &
   "jump SELF break"
 
