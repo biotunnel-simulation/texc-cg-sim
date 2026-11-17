@@ -1,6 +1,8 @@
 import numpy as np
 import os
-file_path1 = '/Volumes/LaCie/project2/khanh_coord/pos_coordinates_1NKW.txt'
+
+# Remove existing files to prevent duplicated outputs
+file_path1 = '/Users/6WD4/pos_coordinates_1NKW.txt'
 file_path2 = '/Volumes/LaCie/project2/khanh_coord/neg_coordinates_1NKW.txt'
 file_path3 = '/Volumes/LaCie/project2/khanh_coord/p_coordinates_1NKW.txt'
 if os.path.exists(file_path1):
@@ -9,6 +11,7 @@ if os.path.exists(file_path2):
     os.remove(file_path2)
 if os.path.exists(file_path3):
     os.remove(file_path3)
+    
 cmd.load('/Volumes/LaCie/project2/mole_khanh/1NKW/pymol/complex.py')
 cmd.remove('chain B')
 cmd.select("arg_lys_tun_sel","resn ARG+LYS within 50 of Tunnel5")
