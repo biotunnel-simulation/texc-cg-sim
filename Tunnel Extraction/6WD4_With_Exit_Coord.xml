@@ -2,6 +2,13 @@
 <Tunnels>
   <Input>/Users/6WD4_edited.pdb</Input>
   <WorkingDirectory>/Users/6WD4/</WorkingDirectory>
+
+  # If ligands or chains are found within the original ribosome structure, they may block the tunnel, thereby affecting the tunnel searching
+  # This section need to be added to remove those blockages
+  #<NonActiveParts>
+  # <Query>Chains("chain_number")</Query>
+  #</NonActiveParts>
+  
   <Params>
     <Cavity ProbeRadius="10" InteriorThreshold="1.25" />
     <Tunnel SurfaceCoverRadius="10" OriginRadius="5" BottleneckTolerance="3" WeightFunction="LengthAndRadius" UseCustomExitsOnly="1"/>
