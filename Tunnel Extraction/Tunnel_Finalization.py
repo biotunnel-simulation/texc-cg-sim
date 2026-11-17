@@ -1,5 +1,9 @@
 import os
 from scipy.interpolate import CubicSpline
+import matplotlib.pyplot as plt
+import numpy as np
+import statistics
+import shutil
 
 def count_files_in_folder(folder_path):
     count = 0
@@ -23,5 +27,13 @@ def make_lists_equal_length(list1, list2, list3, list4):
         list4 += [0] * len_diff
     return list1, list2, list3, list4
 
+
+pro_list = []
+
+with open('/Users/Protein_Code.txt', 'r') as f:
+    for lines in f.readlines()[1:]:
+        line = lines.strip('\n')  
+        data_set = line.split()
+        pro_list.append(data_set[0])
 
 
