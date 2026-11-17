@@ -1,0 +1,24 @@
+#!/usr/local/bin/python3.9
+
+import os
+
+
+
+pdb_file = "/Volumes/LaCie/project2/extra/3J9M/pymol/complex.py" 
+
+mole_file = "/Volumes/LaCie/project2/extra/khanh_aftermole/aftermole_3J9M.py" 
+	
+command = f"pymol -c {mole_file}"
+
+os.system(command)
+
+	
+file_path = "/Users/shiqiyu/Desktop/3J9M.cif" 
+
+
+command2 = f"rm {file_path}"
+	
+os.system(command2)
+
+ 
+exit
