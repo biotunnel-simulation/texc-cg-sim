@@ -1,25 +1,16 @@
 #!/bin/bash
 
-lmp="/Users/shiqiyu/Desktop/research/2nd project/MD"
+lmp="/Users/MD"
 
-length=(20) #6 12 20 29 38 56)
-species=('4UG0') 
-
-# '5XY3' '8BTR' '7QCA' '5T5H' '6WD4' '4UG0'
-
-#'7OYB' '6P5N' '4U3M' '7OLC' '5O60' '5MYJ' '5DM6' '7UNV'
-
-disp=(80) # 80 70 70 80 80 95)
-
+length=(60)     # Number of beads to be added
+species=('6WD4') 
 
 for idx in "${!species[@]}"
 do
 i=${species[idx]}  
-d=${disp[idx]}
 for j in "${length[@]}"
    do
-       lmp_serial -var iname $i -var ilen $j < in.trans_$i
-      
+       lmp_serial -var iname $i -var ilen $j< in.trans_$i
    done
 done
 
