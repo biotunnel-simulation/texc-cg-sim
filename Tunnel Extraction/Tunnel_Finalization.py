@@ -73,7 +73,7 @@ for i in range (len(pro_list)):
         z_23 = float(lines[2].strip().split()[0])
 
     # Extract the centerline coords of the tunnel extracted with specified exit coordinates
-    with open('/Users/tunnel_coordinates_%s.txt' %str(pro_list[i]), 'r+') as f:
+    with open('/Users/%s_single/tunnel_coordinates_%s.txt' %(str(pro_list[i]), str(pro_list[i])), 'r+') as f:
         for lines in f.readlines():
             line = lines.strip('\n')
             data_set = line.split(' ')
