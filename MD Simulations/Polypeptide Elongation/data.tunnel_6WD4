@@ -17,23 +17,6 @@ Masses
 
 1 12
 
-Pair Coeffs # lj/cut
-
-1 0 3.5
-2 0 3.5
-
-Bond Coeffs # harmonic
-
-1 268 1.529
-
-Angle Coeffs # harmonic
-
-1 0 180
-
-Dihedral Coeffs # opls
-
-1 0 0 0 0
-
 Atoms # full
 
 2756 1 1 0 283.705658 177.210327 215.3452 0 0 0
