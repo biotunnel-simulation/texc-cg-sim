@@ -6,7 +6,7 @@
   # If ligands or chains are found within the original ribosome structure, they may block the tunnel, thereby affecting the tunnel searching
   # This section need to be added to remove those blockages
   #<NonActiveParts>
-  # <Query>Chains("chain_number")</Query>
+  # <Query>Chains("chain_id")</Query>
   #</NonActiveParts>
   
   <Params>
