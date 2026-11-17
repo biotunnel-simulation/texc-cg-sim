@@ -1,0 +1,209 @@
+variable dir index ${iname}
+
+variable mer equal ${ilen}
+
+variable T equal 293
+
+variable CON0 equal 100000 
+
+
+label loop
+
+variable n loop 2 2
+
+
+units              real
+boundary 	   p p p
+atom_style         full
+bond_style         harmonic
+angle_style        harmonic     # MARTINI cosine/squared  OPLS harmonic
+pair_style         hybrid lj/cut 3.5 lj/cut/coul/cut 12      # MARTINI 4.7   OPLS 3.5
+dihedral_style     opls    # MARTINI charmm             
+special_bonds      lj/coul 0.0 0.0 0.5     #OPLS style   MARTINI 0 1 1
+
+region sys block 0.0 200.0 0.0 200.0 0.0 200.0
+
+create_box 3 sys bond/types 1 angle/types 1 dihedral/types 1 extra/bond/per/atom 1 extra/angle/per/atom 2  extra/dihedral/per/atom 3
+
+
+read_data  ${dir}/data.tunnel_check add append offset 0 0 0 0 0 
+
+pair_coeff 1 1 lj/cut 0.066 3.5    # MARTINI Ala 1.34 4.7  OPLS 0.066 3.5
+
+pair_coeff 1 2 lj/cut/coul/cut 0.08 3.5
+
+pair_coeff 1 3 lj/cut/coul/cut 0.08 3.5
+
+pair_coeff 2 2 lj/cut/coul/cut 0.066 3.5  
+ 
+pair_coeff 2 3 lj/cut/coul/cut 0.066 3.5
+
+pair_coeff 3 3 lj/cut/coul/cut 0.066 3.5
+
+
+bond_coeff 1  7268  1.529      # MARTINI extended 1.5 3.5  MARTINI coil 0.24 3.5  OPLS 268  1.529
+ 
+angle_coeff 1  8   180     #MARTINI extended 3 134   MARTINI coil 3 127    OPLS  58.35   112.7
+
+dihedral_coeff 1  0 0 0 0        # 1.3 -0.05 0.2 0  
+
+mass * 12    # MARTINI unit amu 72
+
+
+group tunnel type 1 
+
+reset_atoms id sort yes
+
+neigh_modify exclude type 1 1
+
+
+read_data  ${mer}/data.lj_${dir}_trans add append offset 1 0 0 0 0  
+
+
+group nc type 2
+
+
+compute www tunnel count/type atom
+
+run 0
+
+variable wall equal c_www[1]
+
+variable chain equal ${wall}+1
+
+variable chain2 equal ${chain}   #${chain}+3*${mer}-1
+
+group target type 2
+
+group c_ter id ${chain} 
+
+group n_ter id ${chain2}
+
+group rest subtract nc c_ter
+
+neigh_modify exclude group rest c_ter
+
+neigh_modify exclude group tunnel c_ter
+
+timestep 1.0
+
+
+thermo_style custom step temp press pe density cpu
+
+thermo    1000
+
+variable check equal 0
+
+variable start timer
+
+neigh_modify delay 0 every 1 check yes
+
+min_style       sd
+
+minimize        1.0e-8 1.0e-6 1000 1000
+
+#variable CON   equal   5000*($n)   
+
+
+fix         1   rest nvt temp ${T} ${T} 10
+
+#dump        1   all custom 1000 ${dir}/${mer}/trans/tunnel.lammpstrj id element x y z
+
+#dump_modify  1  element C N C
+
+dump        4   nc custom 10000 test/${dir}/initial_${n}.lammpstrj type id element x y z 
+
+run         1000                   
+
+label loopa
+
+variable a loop 3000   # so 1.5E7 fs in total (around 10 ns)
+
+displace_atoms nc random 1 -0.5 0 10086 units box
+
+read_data  ${mer}/data.lj_${dir}_trans add append offset 2 0 0 0 0 group nc
+
+group nc type 2 3
+
+group c_ter delete
+
+group n_ter delete
+
+variable wall equal c_www[1]
+
+variable chain equal ${wall}+1
+
+variable chain2 equal ${chain}+${a}   
+
+variable chain3 equal ${chain2}-1
+
+variable chain4 equal ${chain2}-2
+
+
+group c_ter id ${chain2} 
+
+group n_ter id ${chain}
+
+group rest subtract nc c_ter
+
+create_bonds single/bond 1 ${chain2} ${chain3}
+
+if " ${a} >= 2 " then &
+  "create_bonds single/angle 1 ${chain2} ${chain3} ${chain4}"
+
+
+if "${a} >= 1" then &
+ "min_style       sd" &
+ "minimize        1.0e-8 1.0e-6 1000 1000"&
+ "fix 10 tunnel setforce 0.0 0.0 0.0"
+
+variable seed equal 54634234+1000*${n}
+
+velocity all create ${T} ${seed}       
+                                         	 
+run 0
+
+velocity all scale ${T}
+
+velocity tunnel zero linear
+velocity tunnel zero angular
+
+run         10000
+
+
+
+if "${a} == 59" then "variable check equal 1"      #200
+
+
+variable nnnname equal ${a}+1
+
+if " ${check} == 1 " then &
+  "dump  2   nc custom 500 test/${dir}/${nnnname}_chain_${n}.lammpstrj id element x y z" &
+  "run 10000" &
+  "jump SELF break"
+
+
+#undump 4
+
+next a
+jump   in.trans_${dir} loopa
+
+label break
+
+variable    a delete 
+
+variable stop timer
+
+print "Elapsed time: $(v_stop-v_start:%.6f)"
+
+
+clear
+
+next        n
+
+jump SELF loop
+
+quit
+
+
+
