@@ -1,7 +1,7 @@
 import numpy as np
 import os
 
-cmd.load('/Users/6WD4/complex.py')
+cmd.load('/Users/6WD4/pymol/complex.py')
 
 # If Tunnel1 is the correct tunnel after comparison
 xyz=cmd.get_coords('Tunnel1',1)
