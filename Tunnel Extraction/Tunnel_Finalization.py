@@ -28,6 +28,7 @@ def make_lists_equal_length(list1, list2, list3, list4):
     return list1, list2, list3, list4
 
 
+# Extract ribosome names 
 pro_list = []
 
 with open('/Users/Protein_Code.txt', 'r') as f:
@@ -36,4 +37,9 @@ with open('/Users/Protein_Code.txt', 'r') as f:
         data_set = line.split()
         pro_list.append(data_set[0])
 
-
+# Count the number of tunnels extracted from each species without specified exit coordinates
+tunnel_num = []
+for i in range (len(pro_list)):
+    folder_path = '/Users/%s/pymol/csv' %str(pro_list[i])
+    file_count = count_files_in_folder(folder_path)
+    tunnel_num.append(file_count)
