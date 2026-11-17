@@ -23,7 +23,7 @@ region sys block 0.0 200.0 0.0 200.0 0.0 200.0
 
 create_box 3 sys bond/types 1 angle/types 1 dihedral/types 1 extra/bond/per/atom 1 extra/angle/per/atom 2  extra/dihedral/per/atom 3
 
-read_data  ${dir}/data.tunnel add append offset 0 0 0 0 0 
+read_data  ${dir}/data.tunnel_${dir} add append offset 0 0 0 0 0 
 
 pair_coeff 1 1 lj/cut 0.066 3.5   
 
