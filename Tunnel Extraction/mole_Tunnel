@@ -2,6 +2,19 @@
 
 import os
 
-os.system('mono TunnelsServer/mole2.exe /Users/6WD4_With_Exit_Coord.xml')
+pro_list = []
+with open('/Users/Protein_Code.txt', 'r') as f:
+    for lines in f.readlines()[1:]:
+        line = lines.strip('\n')  
+        data_set = line.split()
+        pro_list.append(data_set[0])
 
-os.system('mono TunnelsServer/mole2.exe /Users/6WD4_Without_Exit_Coord.xml')
+for i in range (len(pro_list)):
+
+  # Perform tunnel searching using exit coord
+	os.system('mono TunnelsServer/mole2.exe /Users/%s__With_Exit_Coord.xml' %str(pro_list[num]))
+
+  # Perform tunnel searching without using exit coord
+  os.system('mono TunnelsServer/mole2.exe /Users/%s__Without_Exit_Coord.xml' %str(pro_list[num]))
+
+exit
