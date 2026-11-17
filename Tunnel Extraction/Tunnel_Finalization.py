@@ -66,14 +66,14 @@ for i in range (len(pro_list)):
     dup_list = []
 
     # Extract the coords of conserved residues of uL23/eL39
-    with open('/Users/%s/exit_coords_%s.txt' %(str(pro_list[i]), str(pro_list[i])), 'r+') as f:
+    with open('/Users/exit_coords_%s.txt' %str(pro_list[i]), 'r+') as f:
         lines = f.readlines()
         x_23 = float(lines[0].strip().split()[0])
         y_23 = float(lines[1].strip().split()[0])
         z_23 = float(lines[2].strip().split()[0])
 
     # Extract the centerline coords of the tunnel extracted with specified exit coordinates
-    with open('/Users/%s_single/tunnel_coordinates_%s.txt' %(str(pro_list[i]), str(pro_list[i])), 'r+') as f:
+    with open('/Users/tunnel_geo/tunnel_coordinates_%s.txt' %str(pro_list[i]), 'r+') as f:
         for lines in f.readlines():
             line = lines.strip('\n')
             data_set = line.split(' ')
