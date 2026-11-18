@@ -172,7 +172,7 @@ if " ${check} == 1 " then &
   "jump SELF break"
 
 next a
-jump   in.trans loopa
+jump   in.trans_${dir} loopa
 
 label break
 
