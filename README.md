@@ -48,7 +48,12 @@ To reduce computational costs, adjust the number of tunnel wall beads by removin
 ./reduce_beads
 ```
 
-Then, perform simulations to generate ligand diffusion trajectories from the tunnel exit port toward the PTC as follows:
+Then, use Python to generate a five-bead ring positioned near the tunnel exit port and create the corresponding data file, `data.6WD4_diff_1`. Run a preliminary simulation to sample different initial positions along the diffusion pathway. These sampled positions can then be used as alternative starting configurations for subsequent simulations:
+```
+lmp_serial < in.diffusion_6WD4
+```
+
+Finally, perform more simulations to generate ligand diffusion trajectories from the tunnel exit port toward the PTC as follows:
 ```
 ./mesh_diffuse
 ```
