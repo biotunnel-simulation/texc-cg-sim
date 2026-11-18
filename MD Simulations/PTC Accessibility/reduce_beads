@@ -8,7 +8,7 @@ for idx in "${!species[@]}"
 do
 i=${species[idx]}  
 do
-      lmp_serial -var iname $i < in.tunnel_modify_
+      lmp_serial -var iname $i < in.tunnel_modify_$i
 done
 
 exit
