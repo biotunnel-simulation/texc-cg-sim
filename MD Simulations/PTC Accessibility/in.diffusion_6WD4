@@ -108,7 +108,7 @@ fix         0   nc rigid single langevin 300 300 16 54634234
 # real τ_damp = (m/Na) * D/ kT
 
 dump        2   nc custom 1000 ${dir}/diffusion_${n}.lammpstrj id element x y z     # Ligand only
-dump        4   tunnel custom 10000 ${dir}/tunnel_diff.lammpstrj id element x y z        # Tunnel only
+dump        4   tunnel custom 10000 ${dir}/tunnel_diff_${n}.lammpstrj id element x y z        # Tunnel only
 
 
 label loopa
@@ -126,7 +126,7 @@ if " ${check} == 1 " then &
   "jump SELF break"
 
 next a
-jump      in.diffusion loopa
+jump      in.diffusion_${dir} loopa
 
 run         1000
 
