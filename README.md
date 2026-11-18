@@ -13,6 +13,6 @@ This is the supplementary code for the paper [Prokaryotic-like ribosome exit tun
 
 This project involves an automated workflow for tunnel extraction and downstream geometric analysis using Python scripts, as well as coarse-grained molecular dynamics (MD) simulations performed using LAMMPS
 
-# Tunnel Extraction & Downstream Geometric Analysis
+### Tunnel Extraction & Downstream Geometric Analysis
 
 # MD Simulations
