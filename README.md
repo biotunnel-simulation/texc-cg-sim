@@ -47,7 +47,8 @@ To reduce computational costs, adjust the number of tunnel wall beads by removin
 ```
 ./reduce_beads
 ```
-Then, perform the simulations to generate diffusion trajectories of ligands from tunnel exit port to the PTC as follows:
+
+Then, perform simulations to generate ligand diffusion trajectories from the tunnel exit port toward the PTC as follows:
 ```
-lmp_serial < in.diffusion
+./mesh_diffuse
 ```
