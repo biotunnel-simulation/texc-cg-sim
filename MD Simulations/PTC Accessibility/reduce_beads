@@ -1,0 +1,14 @@
+#!/bin/bash
+
+lmp="/Users/MD"
+
+species=('6WD4') 
+
+for idx in "${!species[@]}"
+do
+i=${species[idx]}  
+do
+      lmp_serial -var iname $i < in.tunnel_modify
+done
+
+exit
