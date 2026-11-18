@@ -1,0 +1,15 @@
+#!/bin/bash
+
+lmp="/Users/MD"
+
+species=('6WD4') 
+disp=(70) 
+
+for idx in "${!species[@]}"
+do
+i=${species[idx]}  
+d=${disp[idx]}
+   lmp_serial -var iname $i -var idis $d < in.diffusion_$i
+done
+
+exit
