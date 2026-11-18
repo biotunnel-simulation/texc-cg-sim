@@ -1,0 +1,23 @@
+LAMMPS data file. CGCMM style.
+ 1 atoms
+ 0 bonds
+ 0 angles
+ 0 dihedrals
+ 0 impropers
+ 1 atom types
+ 0 bond types
+ 0 angle types
+ 0 dihedral types
+ 0 improper types
+
+ 0  200  xlo xhi          #-2.950000 9.868000
+ 0  200  ylo yhi         # -6.784000 11.824000
+ 0  200  zlo zhi         #-11.057000 7.885000
+              
+ Masses
+
+ 1 12.000 # CH2
+
+ Atoms # full
+
+1 1 1 0.000000 212.947 184.572 179.078 # C UNL
