@@ -17,10 +17,17 @@ This project involves an automated workflow for tunnel extraction and downstream
   
 ### Tunnel Extraction & Downstream Geometric Analysis
 
-First, generate a truncated ribosome structure that retains the region surrounding the ribosome exit tunnel within an approximately 80 Å radius to reduce computational costs
-'''
+First, generate a truncated ribosome structure that retains the atoms surrounding the ribosome exit tunnel within an approximately 80 Å radius to reduce computational costs
+
+```
 python3 Truncated_6WD4.py
-'''
+```
+Second, use `mole.exe` to perform tunnel searching and extract potential tunnel structures, both with and without specifying the exit-port coordinates. The exit-port coordinates correspond to those of conserved nucleotides in uL23 or eL39 near the tunnel exit, identified through sequence alignment.
+
+```
+./mole_Tunnel
+```
+
 
 ### MD Simulations
 
