@@ -1,4 +1,4 @@
-variable dir index ${iname}
+variable dir index ${iname}            # ${dir} is the PDB ID (e.g. 6WD4)
 
 variable mer equal ${ilen}
 
@@ -9,24 +9,24 @@ variable T equal 300
 
 label loop
 
- 
-variable n loop 20 20
+# Generate 20 trajectories
+variable n loop 1 20
 
 units              real
-boundary 	   p p p
+boundary 	         p p p
 atom_style         full
 bond_style         harmonic
-angle_style        harmonic     # MARTINI cosine/squared  OPLS harmonic
-pair_style         lj/cut 3.5   # MARTINI 4.7   OPLS 3.5
-dihedral_style     opls    # MARTINI charmm             
-special_bonds      lj/coul 0.0 0.0 0.5     #OPLS style   MARTINI 0 1 1
+angle_style        harmonic     
+pair_style         lj/cut 3.5  
+dihedral_style     opls               
+special_bonds      lj/coul 0.0 0.0 0.5     
 
 region sys block 0.0 1000.0 0.0 1000.0 0.0 1000.0
 
 create_box 2 sys bond/types 1 angle/types 0 dihedral/types 0 extra/bond/per/atom 1 extra/angle/per/atom 0  extra/dihedral/per/atom 0
 
 
-read_data  ${dir}/data.tunnel_check_diff add append offset 0 0 0 0 0  
+read_data  ${dir}/data.tunnel_diff add append offset 0 0 0 0 0  
 
 
 pair_coeff 1 1 0.066 3.5
@@ -90,7 +90,8 @@ run 0
 
 velocity all scale ${T}
 
-velocity tunnel zero linear
+velocity tunnel zero linear
+
 velocity tunnel zero angular
 
 
