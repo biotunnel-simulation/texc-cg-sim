@@ -41,7 +41,7 @@ After determining the position of the newly added bead and the direction of chai
 ./mesh_trans
 ```
 #### PTC Accessibility
-Before generating the tunnel data files for ligand diffusion studies using the same workflow, the tunnel mesh structure (.stl) must first be modified by cutting open the PTC side in Autodesk Fusion.
+Before generating the tunnel data files for ligand diffusion studies using the same workflow, the tunnel mesh structure (*.stl*) must first be modified by cutting open the PTC side in Autodesk Fusion.
 
 To reduce computational costs, adjust the number of tunnel wall beads by removing overlapping beads and generate a new tunnel data file as follows:
 ```
