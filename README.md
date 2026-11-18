@@ -2,6 +2,8 @@
 
 This repository contains the supplementary code for the paper [Prokaryotic-like ribosome exit tunnels in eukaryotic protists: structural origins and functional consequences](#url_to_be_added).
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24331906.svg)](https://doi.org/10.5281/zenodo.24331906)
+
 ## Dependencies
 
 - Python 3.9
