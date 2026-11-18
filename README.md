@@ -28,6 +28,7 @@ Second, use `mole.exe` to perform tunnel searching and extract potential tunnel 
 ./mole_Tunnel
 ```
 
+Then execute `Tunnel_Finalization.py` in Visual Studio to identify the actual exit tunnel for each ribosome, and generate 2D radial plots based on the tunnel centerline coordinates and their corresponding radii.
 
 ### MD Simulations
 
