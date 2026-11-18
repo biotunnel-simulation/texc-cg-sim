@@ -1,0 +1,158 @@
+variable dir index ${iname}
+
+variable mer equal ${ilen}
+
+variable displace equal ${idis}
+
+variable T equal 300
+
+
+label loop
+
+ 
+variable n loop 20 20
+
+units              real
+boundary 	   p p p
+atom_style         full
+bond_style         harmonic
+angle_style        harmonic     # MARTINI cosine/squared  OPLS harmonic
+pair_style         lj/cut 3.5   # MARTINI 4.7   OPLS 3.5
+dihedral_style     opls    # MARTINI charmm             
+special_bonds      lj/coul 0.0 0.0 0.5     #OPLS style   MARTINI 0 1 1
+
+region sys block 0.0 1000.0 0.0 1000.0 0.0 1000.0
+
+create_box 2 sys bond/types 1 angle/types 0 dihedral/types 0 extra/bond/per/atom 1 extra/angle/per/atom 0  extra/dihedral/per/atom 0
+
+
+read_data  ${dir}/data.tunnel_check_diff add append offset 0 0 0 0 0  
+
+
+pair_coeff 1 1 0.066 3.5
+
+pair_coeff 1 2 0.066 3.5     # MARTINI Ala 1.34 4.7  OPLS 0.066 3.5 
+
+pair_coeff 2 2 0.066 3.5
+
+bond_coeff 1  268  4.7
+
+mass 1 12    # MARTINI unit amu 72
+
+mass 2 80    # MARTINI unit amu 24
+
+group tunnel type 1
+
+fix stop_tunnel tunnel setforce 0.0 0.0 0.0
+
+reset_atoms id sort yes
+
+neigh_modify exclude type 1 1
+neigh_modify exclude type 2 2
+
+read_data  initial_ring/${dir}/data.${dir}_diff_${n} add append offset 1 0 0 0 0  
+
+group nc type 2 
+
+
+compute www tunnel count/type atom
+
+
+run 0
+
+variable wall equal c_www[1]
+
+variable chain equal ${wall}+1
+
+group target id ${chain} 
+
+timestep 10
+
+
+thermo_style custom step temp press pe density cpu
+
+
+thermo    1000
+
+
+neigh_modify delay 0 every 1 check yes
+
+min_style       sd
+
+minimize        1.0e-8 1.0e-6 1000 1000
+
+
+variable seed equal 5463+1000*${n}
+
+velocity all create ${T} ${seed}         # set 0 0 0                      #post no
+                                         	   # temperature may not be 300K
+run 0
+
+velocity all scale ${T}
+
+velocity tunnel zero linear
+velocity tunnel zero angular
+
+
+variable check equal 0
+
+compute 3 target displace/atom 
+
+fix         1   nc nve #nvt temp ${T} ${T} 10
+
+fix         0   nc rigid single langevin 300 300 16 54634234 
+
+#fix         2   nc langevin 300 300 16 54634234 
+
+#m = 80*5 g/mol, N_A ≈ 6.022 × 10^{23} mol^{-1}, 
+#diffusion coefficient in water γ = 0.1 × 10^{-9} m^2/s 
+#real τ_damp = (m/Na) * D/ kT
+
+dump        2   nc custom 1000 diffuse2/${dir}/diffusion_${n}.lammpstrj id element x y z   
+dump        4   tunnel custom 10000 diffuse2/${dir}/tunnel.lammpstrj id element x y z 
+
+
+label loopa
+variable a loop 16000    # so 8E7 fs in total (around 8 ns)
+
+run         5000
+
+variable dsp equal C_3[v_chain][4]
+
+if "${dsp} > ${displace}" then "variable check equal 1"
+
+if " ${check} == 1 " then &
+  "dump        3   nc custom 1000 diffuse2/${dir}/unwrapped_${n}.txt id type xu yu zu" &
+  "run 1000" &
+  "jump SELF break"
+
+next a
+jump      in.diffusion loopa
+
+run         1000
+
+label       break
+variable    a delete 
+
+undump      4
+undump      3
+undump      2
+#undump      1
+
+#unfix       2
+unfix       1
+unfix      stop_tunnel
+
+# End of loop
+
+clear
+
+next        n
+
+jump SELF loop
+
+
+quit
+
+
+
