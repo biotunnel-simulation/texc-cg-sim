@@ -1,4 +1,4 @@
-# Ribosome Exit Tunnel Extraction Workflow and Molecular Dynamics Simulations
+# Ribosome Exit Tunnel Extraction and MD Simulation Workflow 
 
 This repository contains the supplementary code for the paper [Prokaryotic-like ribosome exit tunnels in eukaryotic protists: structural origins and functional consequences](#url_to_be_added).
 
