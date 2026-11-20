@@ -10,6 +10,7 @@ This repository contains the supplementary code for the paper [Prokaryotic-like 
 - [LAMMPS version 29 Aug 2024](https://www.lammps.org/)
 - [MOLE2](https://webchem.ncbr.muni.cz/Platform/App/Mole)
 - [PyMOL 2.6](https://www.pymol.org/)
+- [Muscle v5](https://drive5.com/muscle5)  
   
 ## Usage
 
